@@ -1,0 +1,157 @@
+// page attributes
+$base-font-size: 1rem;
+$header-font-size: 1.2rem;
+$base-font-color: #485a72;
+$floating-font-color: #FFFFFF;
+$link-font-color: #4e82a5;
+$bg-color: #f4fffe;
+$report-bg-color: linear-gradient(to bottom left, #9ed8ff, #4a8ab4);
+$block-color: #ffffffb2;
+$base-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+// --------------------------------------------------- mixins
+@mixin base-flex($direction:row, $main-align:start, $cross-align:start, $wrap:nowrap) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $main-align;
+    align-items: $cross-align;
+    flex-wrap: $wrap;
+}
+
+// --------------------------------------------------- global styleing
+.g-base {
+    margin: 0;
+    padding: 0;
+    background-color: $bg-color;
+    font-family:$base-font;
+    font-size: $base-font-size;
+    color: $base-font-color;
+
+}
+
+.g-loading-overlay {
+    position: fixed;
+    z-index: 999;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    overflow: show;
+    margin: auto;
+    display:block;
+    background-color: $bg-color;
+}
+
+.g-banner {
+    @include base-flex(row, start, center);
+    padding: 10px;
+    
+    .g-heading {
+        z-index: 998;
+        font-size: 2rem;
+        font-weight: bold;
+        flex-grow: 1;
+    }
+    .g-sub-heading {
+        z-index: 998;
+    }
+}
+
+footer {
+    padding-top: 5px;
+    padding-left: 10px;
+    z-index: 998;
+}
+
+a {
+    text-decoration: none;
+    color: $link-font-color;
+}
+
+// -------------------------------------------------- page styling
+.s-update-overlay {
+    position: fixed;
+    z-index: 997;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom: 0px;
+    display:block;
+    background-color: $bg-color;
+    opacity: 0.5;
+    display: none;
+}
+main {
+    padding-left: 50px;
+    padding-bottom: 30px;
+    background: $report-bg-color;
+}
+
+#s-city-menu{
+    padding-top: 10px;
+
+    div {
+        color: $floating-font-color;
+        padding-bottom: 10px;
+    }
+
+    select {
+        color: $base-font-color;
+        background: $block-color;
+        font-size: 1.2rem;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+    }
+}
+
+.s-weather {
+    color: $floating-font-color;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    i {
+        font-size: 6rem;
+        padding-bottom: 15px;
+    }
+
+    #weather-description {
+        font-size: 2rem;
+    }
+    
+    #selected-city {
+        font-size: 1.5rem
+    }
+}
+
+#p-report-details {
+    @include base-flex(row, start, none, wrap);
+    gap: 20px;
+
+    .s-wind #header i {
+        font-size: 1.5rem;        
+    }
+
+    & > div {
+        background-color: $block-color;
+        padding: 10px;
+        border-radius: 5px;
+        width: 175px;
+        height: 100px;
+
+        #header {
+            font-size: $header-font-size;
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
+    }
+}
+
+// ------------------------------------------- media queries
+@media screen and (max-width:800px) {
+    .g-banner {
+        @include base-flex(column, start, start);
+    }
+    #p-report-details {
+        @include base-flex(column);
+    }
+}
