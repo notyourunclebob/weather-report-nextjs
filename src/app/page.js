@@ -5,6 +5,7 @@ import CitySelector from "./components/CitySelector";
 import { getJSONData } from "@/lib/Toolkit";
 import Loadingoverlay from "./components/LoadingOverlay";
 import WeatherDisplay from "./components/WeatherDisplay";
+import WeatherDetails from "./components/WeatherDetails";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -36,7 +37,7 @@ export default function Home() {
     // load last selected city from browser storage
     const savedCity = localStorage.getItem("selectedCity");
     // or select first city in list
-    const cityToSelect = savedCity || cities[0].name;
+    const cityToSelect = savedCity || data.data.cities[0].name;
     
     if (cityToSelect) {
       setSelectedCity(cityToSelect);
@@ -54,6 +55,8 @@ export default function Home() {
     }
     setLoading(false);
     setUpdating(false);
+
+    console.log(data);
   };
 
   const handleError = (error) => {
@@ -89,8 +92,22 @@ export default function Home() {
           <WeatherDisplay 
             weather={weatherData?.weather?.[0] || null} 
             city={selectedCity} 
-            province={cities.find(c => c.name === selectedCity)?.province}/>
+            province={cities.find(c => c.name === selectedCity)?.province}
+          />
+
+          <WeatherDetails weatherData={weatherData} />
         </main>
+
+        <footer>
+            Powered by{' '}
+            <a href="http://openweathermap.org/" target="_blank" rel="noopener noreferrer">
+              openweathermap
+            </a>
+            {' | '}
+            <a href="http://erikflowers.github.io/weather-icons/" target="_blank" rel="noopener noreferrer">
+              weather-icons
+            </a>
+        </footer>
       </div>
     </>
   );
