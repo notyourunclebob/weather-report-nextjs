@@ -84,7 +84,7 @@ export default function Home() {
         </header>
 
         <main>
-          <CitySelector cities={cities} selectedCity={selectedCity} onSelect={handleCityChange} />
+          <CitySelector cities={cities} selectedCity={selectedCity} onSelect={handleCityChange} error={error}/>
 
           <WeatherDisplay 
             weather={weatherData?.weather?.[0] || null} 
