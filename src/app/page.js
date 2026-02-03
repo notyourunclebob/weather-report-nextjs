@@ -18,10 +18,10 @@ export default function Home() {
   const [error, setError] = useState(null);
   
   const fetchWeather = (city) => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},CA&units=metric&appid=${API_KEY}`;
+    const weatherScript = `/api/weather?city=${city}`;;
 
     setUpdating(true);
-    getJSONData(url, handleWeatherSuccess, handleError);
+    getJSONData(weatherScript, handleWeatherSuccess, handleError);
   };
   
   const handleCityChange = (city) => {
