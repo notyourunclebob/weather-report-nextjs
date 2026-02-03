@@ -7,7 +7,6 @@ import Loadingoverlay from "./components/LoadingOverlay";
 import WeatherDisplay from "./components/WeatherDisplay";
 import WeatherDetails from "./components/WeatherDetails";
 
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 const CITIY_SCRIPT = "/cities.json";
 
 export default function Home() {
@@ -19,7 +18,7 @@ export default function Home() {
   const [error, setError] = useState(null);
   
   const fetchWeather = (city) => {
-    const weatherScript = `/api/weather?city=${city}`;;
+    const WEATHER_SCRIPT = `/api/weather?city=${city}`;
 
     setUpdating(true);
     getJSONData(weatherScript, handleWeatherSuccess, handleError);
