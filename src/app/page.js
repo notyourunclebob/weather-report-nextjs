@@ -8,6 +8,7 @@ import WeatherDisplay from "./components/WeatherDisplay";
 import WeatherDetails from "./components/WeatherDetails";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const CITIY_SCRIPT = "/cities.json";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -68,7 +69,7 @@ export default function Home() {
 
   // load city data from .json
   useEffect(() => {
-    getJSONData("/api/cities", handleCitySuccess, handleError);
+    getJSONData(CITIY_SCRIPT, handleCitySuccess, handleError);
   }, []);
 
   return (
