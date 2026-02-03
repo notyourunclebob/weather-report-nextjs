@@ -21,7 +21,7 @@ export default function Home() {
     const WEATHER_SCRIPT = `/api/weather?city=${city}`;
 
     setUpdating(true);
-    getJSONData(weatherScript, handleWeatherSuccess, handleError);
+    getJSONData(WEATHER_SCRIPT, handleWeatherSuccess, handleError);
   };
   
   const handleCityChange = (city) => {
